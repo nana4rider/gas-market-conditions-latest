@@ -40,11 +40,11 @@ gas.doGet = (e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.Content.TextOut
   responseData.spinach = {
     date: spinachData[0],
     chart: getChart(spinachSheet),
-    quantity: spinachData[4],
+    quantity: toInt(spinachData[4]),
     price: {
-      al: spinachData[1],
-      am: spinachData[2],
-      as: spinachData[3],
+      al: toInt(spinachData[1]),
+      am: toInt(spinachData[2]),
+      as: toInt(spinachData[3]),
     }
   };
 
@@ -60,22 +60,32 @@ gas.doGet = (e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.Content.TextOut
   responseData.watermelon = {
     date: watermelonData[0],
     chart: getChart(watermelonSheet),
-    quantity: watermelonData[10],
+    quantity: toInt(watermelonData[10]),
     price: {
-      average: watermelonData[9],
-      s4: watermelonData[1],
-      s5: watermelonData[2],
-      sl: watermelonData[3],
-      sm: watermelonData[4],
-      y4: watermelonData[5],
-      y5: watermelonData[6],
-      yl: watermelonData[7],
-      ym: watermelonData[8],
+      average: toInt(watermelonData[9]),
+      s4: toInt(watermelonData[1]),
+      s5: toInt(watermelonData[2]),
+      sl: toInt(watermelonData[3]),
+      sm: toInt(watermelonData[4]),
+      y4: toInt(watermelonData[5]),
+      y5: toInt(watermelonData[6]),
+      yl: toInt(watermelonData[7]),
+      ym: toInt(watermelonData[8]),
     }
   };
 
   return responseJson(responseData);
 };
+
+function toInt(value: any) {
+  if (typeof value === 'number') {
+    return value;
+  } else if (typeof value === 'string' && value.match(/^\d+$/)) {
+    return Number(value);
+  } else {
+    return 0;
+  }
+}
 
 function getChart(sheet: GoogleAppsScript.Spreadsheet.Sheet) {
   return Utilities.base64Encode(sheet.getCharts()[0].getBlob().getBytes());
