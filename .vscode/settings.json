@@ -1,0 +1,27 @@
+{
+  "files.exclude": {
+    "dst/**/*": true,
+    "**/node_modules/**/*": true,
+    "**/Temp/**/*": true,
+    "**/Downloads/**/*": true
+  },
+  "files.autoGuessEncoding": true,
+  "js/ts.implicitProjectConfig.experimentalDecorators": true,
+  "typescript.validate.enable": true,
+  "eslint.debug": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "eslint.validate": [
+    "typescript"
+  ],
+  "terminal.integrated.env.windows": {
+    "PATH": "${workspaceRoot}\\node_modules\\.bin;${env:PATH}"
+  },
+  "todo.embedded.exclude": [
+    "./dst/**/*",
+    "node_modules/**/*",
+    ".git/**/*"
+  ]
+}
